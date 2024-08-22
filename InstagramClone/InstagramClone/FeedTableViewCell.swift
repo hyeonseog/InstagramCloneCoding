@@ -1,12 +1,13 @@
 import Foundation
 import UIKit
 import SnapKit
+import Then
+
 
 final class FeedTableViewCell: UITableViewCell {
-    
+
     private lazy var postImageView = UIImageView().then {
         $0.backgroundColor = .tertiaryLabel
-        
     }
     
     private lazy var likeButton = UIButton().then {
@@ -14,11 +15,11 @@ final class FeedTableViewCell: UITableViewCell {
     }
     
     private lazy var commentButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "messag"), for: .normal)
+        $0.setImage(UIImage(systemName: "message"), for: .normal)
     }
     
     private lazy var directMessageButton = UIButton().then {
-        $0.setImage(UIImage(systemName: "paperplain"), for: .normal)
+        $0.setImage(UIImage(systemName: "paperplane"), for: .normal)
     }
     
     private lazy var bookMarkButton = UIButton().then {
@@ -35,7 +36,7 @@ final class FeedTableViewCell: UITableViewCell {
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 13, weight: .semibold)
         $0.numberOfLines = 5
-        $0.text = "So keep your head high, keep your chin up, and most importantly, keep smiling, because life’s a beautiful thing and there’s so much to smile about."
+        $0.text = "ggain  So keep your head high, keep your chin up, and most importantly, keep smiling, because life’s a beautiful thing and there’s so much to smile about."
     }
     
     private lazy var dateLabel = UILabel().then {
@@ -52,21 +53,19 @@ final class FeedTableViewCell: UITableViewCell {
             directMessageButton,
             bookMarkButton,
             currentLikeCountLabel,
-            contentsLabel,
-            dateLabel
-        ].forEach {addSubview($0)}
+            contentsLabel,   // 추가
+            dateLabel        // 추가
+        ].forEach { addSubview($0) }
         
         // 버튼들의 사이 간격을 동일하게 주기 위해 선언
-        
+        let buttonWidth: CGFloat = 24
+        let buttonInset: CGFloat = 16
         
         postImageView.snp.makeConstraints {
             $0.leading.trailing.equalToSuperview()
             $0.top.equalToSuperview()
             $0.height.equalTo(postImageView.snp.width)
         }
-        
-        let buttonWidth: CGFloat = 24
-        let buttonInset: CGFloat = 16
         
         likeButton.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(buttonInset)
@@ -110,6 +109,5 @@ final class FeedTableViewCell: UITableViewCell {
             $0.top.equalTo(contentsLabel.snp.bottom).offset(8)
             $0.bottom.equalToSuperview().inset(16)
         }
-        
     }
 }
