@@ -5,6 +5,10 @@ import UIKit
 
 final class ProfileViewController: UIViewController {
     
+    private let photoDataView = ProfileDataView(title: "게시물", count: 1)
+    private let followerDataView = ProfileDataView(title: "팔로워", count: 999)
+    private let followingDataView = ProfileDataView(title: "팔로잉", count: 1)
+    
     private lazy var profileImageView = UIImageView().then {
         $0.layer.cornerRadius = 40
         $0.layer.borderWidth = 1
@@ -50,6 +54,10 @@ final class ProfileViewController: UIViewController {
         buttonStackView.spacing = 4
         buttonStackView.distribution = .fillEqually
         
+        let dataStackView = UIStackView(arrangedSubviews: [photoDataView, followerDataView, followingDataView])
+        dataStackView.spacing = 4
+        dataStackView.distribution = .fillEqually
+        
         [
             profileImageView, nameLabel, descriptionLabel, buttonStackView
         ].forEach {view.addSubview($0)}
@@ -79,6 +87,12 @@ final class ProfileViewController: UIViewController {
             $0.top.equalTo(descriptionLabel.snp.bottom).offset(12.0)
             $0.leading.equalTo(nameLabel.snp.leading)
             $0.trailing.equalTo(nameLabel.snp.trailing)
+        }
+        
+        dataStackView.snp.makeConstraints {
+            $0.leading.equalTo(profileImageView.snp.trailing).offset(inset)
+            $0.trailing.equalToSuperview().inset(inset)
+            $0.centerY.equalTo(profileImageView.snp.centerY) // 중앙 정렬
         }
     }
 }
