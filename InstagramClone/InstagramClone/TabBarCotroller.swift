@@ -13,7 +13,7 @@ import Then
 class TabBarCotroller: UITabBarController {
     let feedViewController = UINavigationController(rootViewController: FeedViewController())
     
-    let profileViewController = UIViewController()
+    let profileViewController = UINavigationController(rootViewController: ProfileViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
