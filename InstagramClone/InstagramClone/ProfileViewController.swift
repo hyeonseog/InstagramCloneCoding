@@ -31,6 +31,7 @@ final class ProfileViewController: UIViewController {
         $0.setTitleColor(.white, for: .normal)
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
         $0.backgroundColor = .systemBlue
+        $0.layer.cornerRadius = 5
     }
     
     private lazy var messageButton = UIButton().then {
@@ -39,9 +40,10 @@ final class ProfileViewController: UIViewController {
         $0.titleLabel?.font = .systemFont(ofSize: 14, weight: .semibold)
         $0.backgroundColor = .white
         
-        $0.layer.cornerRadius = 3
+        $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = UIColor.tertiaryLabel.cgColor
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,7 +61,7 @@ final class ProfileViewController: UIViewController {
         dataStackView.distribution = .fillEqually
         
         [
-            profileImageView, nameLabel, descriptionLabel, buttonStackView
+            profileImageView, nameLabel, descriptionLabel, buttonStackView, dataStackView
         ].forEach {view.addSubview($0)}
         
         let inset: CGFloat = 16.0
