@@ -43,8 +43,26 @@ final class ProfileViewController: UIViewController {
         $0.layer.cornerRadius = 5
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = UIColor.tertiaryLabel.cgColor
-
     }
+    
+
+    let width: CGFloat = UIScreen.main.bounds.width / 3
+    //    lazy var width: CGFloat = (collectionView.bounds.width / 3) - 1.0
+    private lazy var collectionViewFlow = UICollectionViewFlowLayout().then {
+        $0.itemSize = .init(width: width, height: width)
+        $0.scrollDirection = .vertical
+    }
+    private lazy var collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: collectionViewFlow
+    ).then {
+        $0.backgroundColor = .systemBackground
+        $0.register(ProfileCollectionViewCell.self, forCellWithReuseIdentifier: ProfileCollectionViewCell.identifier)
+        $0.delegate = self
+        $0.dataSource = self
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
@@ -61,7 +79,7 @@ final class ProfileViewController: UIViewController {
         dataStackView.distribution = .fillEqually
         
         [
-            profileImageView, nameLabel, descriptionLabel, buttonStackView, dataStackView
+            profileImageView, nameLabel, descriptionLabel, buttonStackView, dataStackView, collectionView
         ].forEach {view.addSubview($0)}
         
         let inset: CGFloat = 16.0
@@ -96,6 +114,13 @@ final class ProfileViewController: UIViewController {
             $0.trailing.equalToSuperview().inset(inset)
             $0.centerY.equalTo(profileImageView.snp.centerY) // 중앙 정렬
         }
+        
+        collectionView.snp.makeConstraints {
+//            $0.edges.equalTo(dataStackView.snp.bottom).offset(inset)
+            $0.top.equalTo(buttonStackView.snp.bottom).offset(inset)
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
+        }
     }
 }
 
@@ -112,3 +137,19 @@ private extension ProfileViewController {
         navigationItem.rightBarButtonItem = rightBarButton
     }
 }
+
+extension ProfileViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCollectionViewCell.identifier, for: indexPath)
+        
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+}
+
