@@ -10,12 +10,22 @@ class FeedViewController: UIViewController {
         $0.dataSource = self
         $0.register(FeedTableViewCell.self, forCellReuseIdentifier: "FeedTableViewCell")
     }
+    
+    private lazy var imagePickerViewController = UIImagePickerController().then {
+        $0.sourceType = .photoLibrary
+    }
+    
+    @objc func didTapUploadButton() {
+        present(imagePickerViewController, animated: true)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         addView()
         setupLayOut()
         setupNavigationBar()
+        
+        navigationItem.rightBarButtonItem?.action = #selector(didTapUploadButton)
     }
     
     func addView() {

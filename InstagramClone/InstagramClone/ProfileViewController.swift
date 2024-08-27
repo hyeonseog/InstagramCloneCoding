@@ -70,6 +70,7 @@ final class ProfileViewController: UIViewController {
     }
     
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
@@ -77,7 +78,7 @@ final class ProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         
-        didTapRightBarButtonItem()
+        navigationItem.rightBarButtonItem?.action = #selector(didTapRightBarButtonItem)
     }
 
     func setupLayout() {
