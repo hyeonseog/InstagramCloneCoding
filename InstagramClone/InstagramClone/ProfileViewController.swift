@@ -58,12 +58,26 @@ final class ProfileViewController: UIViewController {
     }()
     
     
+    @objc func didTapRightBarButtonItem() {
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        [
+            UIAlertAction(title: "회원 정보 변경", style: .default),
+            UIAlertAction(title: "탈퇴하기", style: .destructive),
+            UIAlertAction(title: "닫기", style: .cancel)
+        ].forEach {actionSheet.addAction($0)}
+        
+        present(actionSheet, animated: true)
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigationItems()
         setupLayout()
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        didTapRightBarButtonItem()
     }
 
     func setupLayout() {

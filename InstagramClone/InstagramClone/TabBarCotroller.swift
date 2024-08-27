@@ -19,16 +19,17 @@ class TabBarCotroller: UITabBarController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         
-            feedViewController.tabBarItem = UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "house"),
-                selectedImage: UIImage(systemName: "house.fill"))
+        feedViewController.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(systemName: "house"),
+            selectedImage: UIImage(systemName: "house.fill"))
         
-            profileViewController.tabBarItem = UITabBarItem(
-                title: nil,
-                image: UIImage(systemName: "person"),
-                selectedImage: UIImage(systemName: "person.fill"))
-            
-            viewControllers = [feedViewController, profileViewController]
-        }
+        profileViewController.tabBarItem = UITabBarItem(
+            title: nil,
+            image: UIImage(systemName: "person"),
+            selectedImage: UIImage(systemName: "person.fill")
+        )
+        
+        viewControllers = [feedViewController, profileViewController]
     }
+}

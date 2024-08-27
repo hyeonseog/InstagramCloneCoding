@@ -4,6 +4,7 @@ import SnapKit
 import Then
 
 final class ProfileDataView: UIView {
+    
     private let title: String
     private let count: Int
     
