@@ -29,7 +29,7 @@ final class FeedTableViewCell: UITableViewCell {
     private lazy var currentLikeCountLabel = UILabel().then {
         $0.textColor = .label
         $0.font = .systemFont(ofSize: 13, weight: .semibold)
-        $0.text = "hy._.s9님 외 32명이 좋아합니다."
+        $0.text = "hy._.s9_님 외 32명이 좋아합니다."
     }
     
     private lazy var contentsLabel = UILabel().then {
